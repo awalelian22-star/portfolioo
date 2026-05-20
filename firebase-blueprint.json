@@ -1,0 +1,156 @@
+{
+  "entities": {
+    "Admin": {
+      "title": "Admin User",
+      "description": "Authorized administrator details mapping the UID.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "Email address of the administrator" },
+        "uid": { "type": "string", "description": "Auth UID" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of record mapping" }
+      },
+      "required": ["email", "uid", "createdAt"]
+    },
+    "Notice": {
+      "title": "Notice Banner/Bulletin",
+      "description": "Urgent, historical, or academic news banners for students and guardians.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique UUID matching document path" },
+        "title": { "type": "string", "description": "Main header line" },
+        "date": { "type": "string", "description": "Readable publication date string" },
+        "category": { "type": "string", "enum": ["admission", "academic", "routine", "event", "general"], "description": "Category for filtering notices" },
+        "content": { "type": "string", "description": "Detailed text content in notice" },
+        "isImportant": { "type": "boolean", "description": "Whether is pinned prominently" },
+        "pdfUrl": { "type": "string", "description": "Optional attachment URL link" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "date", "category", "content", "createdAt"]
+    },
+    "Program": {
+      "title": "Academic Program Portfolio",
+      "description": "Specialized course with standard criteria, core duration, and syllabus blocks.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "URL-safe slug identifier" },
+        "title": { "type": "string", "description": "Official programmatic title" },
+        "type": { "type": "string", "description": "Higher Board or specialization track description" },
+        "description": { "type": "string", "description": "Detailed multi-paragraph syllabus overview" },
+        "duration": { "type": "string", "description": "Standard duration string" },
+        "eligibility": { "type": "string", "description": "Strict pre-requisite admission requirements" },
+        "icon": { "type": "string", "description": "Lucide icon string keyword" },
+        "image": { "type": "string", "description": "Banner background media URL source" },
+        "features": { "type": "array", "description": "Strict bullet feature offerings" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "type", "description", "duration", "eligibility", "icon", "image", "features", "createdAt"]
+    },
+    "GalleryItem": {
+      "title": "Academic Visual Asset",
+      "description": "An image showing facilities, active laboratories, sports events, or standard layouts from campus activities.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Asset identification tag" },
+        "title": { "type": "string", "description": "Caption header" },
+        "category": { "type": "string", "enum": ["campus", "academic", "activity", "event"], "description": "Segment filter" },
+        "image": { "type": "string", "description": "Unsplash or cloud storage image endpoint" },
+        "description": { "type": "string", "description": "Narrative paragraph" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "category", "image", "description", "createdAt"]
+    },
+    "Testimonial": {
+      "title": "Alumni / Parent Testimonial Details",
+      "description": "Endorsements from the immediate community validating learning outcomes.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Identifying string ID" },
+        "name": { "type": "string", "description": "Author full name" },
+        "role": { "type": "string", "enum": ["Student", "Alumni", "Parent"], "description": "Persona identity tag" },
+        "program": { "type": "string", "description": "Program stream affiliation" },
+        "content": { "type": "string", "description": "Quote message" },
+        "image": { "type": "string", "description": "Author face image endpoint" },
+        "rating": { "type": "number", "description": "Rating score out of 5 stars" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "role", "content", "image", "rating", "createdAt"]
+    },
+    "StatCounter": {
+      "title": "Institutional Stat Core",
+      "description": "Quantitative metrics demonstrating excellence benchmarks over years.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Shorthand tag" },
+        "label": { "type": "string", "description": "Headline labels" },
+        "value": { "type": "number", "description": "Quantitative numerical scale value" },
+        "suffix": { "type": "string", "description": "Symbol addition like plus percent sign" },
+        "icon": { "type": "string", "description": "Lucide display icon reference" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "label", "value", "suffix", "icon", "createdAt"]
+    },
+    "AdmissionApplication": {
+      "title": "Prospective Student Registration",
+      "description": "Candidate application document detailing eligibility qualifications and stream of interest.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "program": { "type": "string" },
+        "previousExam": { "type": "string" },
+        "gpa": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "approved", "under_review", "rejected"] },
+        "appliedDate": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "fullName", "email", "phone", "program", "previousExam", "gpa", "status", "appliedDate", "createdAt"]
+    },
+    "SiteSettingDoc": {
+      "title": "Generic Content Configurations",
+      "description": "Unified dynamic parameters defining text, colors, layouts, SEO tags, or integrations.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Primary identifiers (e.g. hero, about, contact, settings, ads, seo)" },
+        "content": { "type": "object", "description": "Actual dictionary mapping section content values" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "content", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Secure reference list of valid admin user references."
+    },
+    "/notices/{noticeId}": {
+      "schema": "Notice",
+      "description": "Global official news and notice broadcasts."
+    },
+    "/programs/{programId}": {
+      "schema": "Program",
+      "description": "The course directory profile offerings."
+    },
+    "/gallery/{itemId}": {
+      "schema": "GalleryItem",
+      "description": "Interactive media gallery blocks."
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": "Testimonial",
+      "description": "Verified student reviews and testimonials."
+    },
+    "/stats/{statId}": {
+      "schema": "StatCounter",
+      "description": "Key numerical achievements counts."
+    },
+    "/admissions/{applicationId}": {
+      "schema": "AdmissionApplication",
+      "description": "Securely submitted student admissions applications."
+    },
+    "/site_settings/{docId}": {
+      "schema": "SiteSettingDoc",
+      "description": "Configurable site aesthetics, SEO keywords, hero/about texts, ad grids, contact details."
+    }
+  }
+}

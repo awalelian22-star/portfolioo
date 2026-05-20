@@ -1,0 +1,6 @@
+{
+  "name": "Arniko International Academy",
+  "description": "A premium modern college landing page for Arniko International Academy featuring a clean futuristic academic aesthetic, interactive admissions portal, live notice boards, programs list, achievements, and gallery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
